@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.james.R;
 
@@ -21,6 +22,7 @@ public class WeiXinContactUi extends AppCompatActivity {
     private SideBar sb_letter;
     private ContactAdapter mAdapter;
     private ArrayList<Person> mContactList=new ArrayList<>();
+    private TextView tv_show_letter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +31,6 @@ public class WeiXinContactUi extends AppCompatActivity {
 
         initView();
         initData();
-        sortDatas();
-
     }
 
     private void initData() {
@@ -40,37 +40,53 @@ public class WeiXinContactUi extends AppCompatActivity {
         mContactList.add(new Person("赵六"));
         mContactList.add(new Person("田七"));
         mContactList.add(new Person("王八"));
+        mContactList.add(new Person("aaa"));
+        mContactList.add(new Person("james"));
+        mContactList.add(new Person("123341234"));
+        mContactList.add(new Person("tinsa"));
+        mContactList.add(new Person(" pony"));
+        mContactList.add(new Person("n张三"));
+        mContactList.add(new Person("ddd"));
+        mContactList.add(new Person("eee"));
+        mContactList.add(new Person("hhhh"));
+        mContactList.add(new Person("iiii"));
+        mContactList.add(new Person("jjj王八"));
+        mContactList.add(new Person("白痴"));
+        mContactList.add(new Person("傻瓜"));
+        mContactList.add(new Person("弱智"));
+        mContactList.add(new Person("高手"));
+        mContactList.add(new Person("超神"));
+        mContactList.add(new Person("o张三"));
+        mContactList.add(new Person("s李四"));
+        mContactList.add(new Person("q王五"));
+        mContactList.add(new Person("u赵六"));
+        mContactList.add(new Person("v田七"));
+        mContactList.add(new Person("x王八"));
         mContactList.add(new Person("123"));
-        mContactList.add(new Person("adfw"));
-        mContactList.add(new Person("###"));
-        mContactList.add(new Person("  "));
-        mContactList.add(new Person(" *"));
+        mContactList.add(new Person("友爱"));
+        mContactList.add(new Person("高超"));
+        mContactList.add(new Person("某人"));
+        mContactList.add(new Person("缘分"));
         mAdapter.notifyDataSetChanged();
     }
 
     private void initView() {
         lv_contact = (ListView) findViewById(R.id.lv_contact);
         sb_letter = (SideBar) findViewById(R.id.sb_letter);
+        tv_show_letter = (TextView) findViewById(R.id.tv_show_letter);
         mAdapter=new ContactAdapter(this,mContactList);
         lv_contact.setAdapter(mAdapter);
-    }
-
-    private void sortDatas() {
-//        Collections.sort(mContactList,);
-        CharacterParser characterParse=CharacterParser.getInstance();
-        String firstLetter="";
-        for (Person person:mContactList){
-            if(TextUtils.isEmpty(person.getName().trim())){
-                person.setLetter("#");//名字为空,首字母默认为"#"
-            }else{
-                firstLetter=characterParse.getSelling(person.getName().trim()).substring(0,1).toUpperCase();
-                if(firstLetter.matches("[A-Z]"))//如果此字符不为A-Z中的一个,那么,则会设置为"#"
-                    person.setLetter(firstLetter);
-                else
-                    person.setLetter("#");
-
+        sb_letter.setTextView(tv_show_letter);
+        sb_letter.setOnTouchingLetterChangedListener(new SideBar.OnTouchingLetterChangedListener() {
+            @Override
+            public void onTouchingLetterChanged(String s) {
+                int index=mAdapter.getFirstLetterPostion(s);
+                if(index!=-1){
+                    lv_contact.setSelection(index);
+                }
             }
-        }
-        mAdapter.notifyDataSetChanged();
+        });
     }
+
+
 }
