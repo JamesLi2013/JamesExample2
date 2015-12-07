@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.apkfuns.logutils.LogUtils;
+import com.example.james.CommonAdapterEx.AdapterExUI;
 import com.example.james.bean.LocationBean;
 import com.example.james.okhttpExample.OkHttpExampleUI;
 import com.example.james.weixinContact.WeiXinContactUi;
@@ -31,8 +32,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        goOkHttpExample();
-        goWeiXInContact();
+        goCommonAdapterUI();
+    }
+
+    private void goCommonAdapterUI(){
+        Intent intent=new Intent(this, AdapterExUI.class);
+        startActivity(intent);
     }
 
     private void goOkHttpExample(){

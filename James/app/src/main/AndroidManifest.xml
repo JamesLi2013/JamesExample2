@@ -18,7 +18,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".okhttpExample.OkHttpExampleUI" />
-        <activity android:name=".weixinContact.WeiXinContactUi"></activity>
+        <activity android:name=".weixinContact.WeiXinContactUi" />
+        <activity android:name=".CommonAdapterEx.AdapterExUI"></activity>
     </application>
 
 </manifest>
