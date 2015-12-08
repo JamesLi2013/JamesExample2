@@ -11,6 +11,11 @@ public class Person {
         this.name = name;
     }
 
+    public Person(String name,String imageUrl) {
+        this.name = name;
+        this.imgUrl=imageUrl;
+    }
+
     public String getName() {
         return name;
     }

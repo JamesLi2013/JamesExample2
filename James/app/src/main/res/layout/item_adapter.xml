@@ -10,4 +10,9 @@
         android:id="@+id/tv_item_common_adapter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/iv_item_common_adapter"
+        android:layout_width="match_parent"
+        android:scaleType="center"
+        android:layout_height="100dp" />
 </LinearLayout>
