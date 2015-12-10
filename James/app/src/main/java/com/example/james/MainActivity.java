@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.apkfuns.logutils.LogUtils;
 import com.example.james.CommonAdapterEx.AdapterExUI;
 import com.example.james.bean.LocationBean;
+import com.example.james.dialog.DialogExUI;
 import com.example.james.okhttpExample.OkHttpExampleUI;
 import com.example.james.weixinContact.WeiXinContactUi;
 import com.google.gson.Gson;
@@ -32,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        goCommonAdapterUI();
+
+        goDialogEx();
     }
 
     private void goCommonAdapterUI(){
@@ -48,6 +50,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void goWeiXInContact(){
         Intent intent =new Intent(this, WeiXinContactUi.class);
+        startActivity(intent);
+    }
+    private void goDialogEx(){
+        Intent intent =new Intent(this, DialogExUI.class);
         startActivity(intent);
     }
 
