@@ -1,4 +1,4 @@
-package com.example.james.CommonAdapterEx;
+package com.example.james.commonAdapterEx;
 
 import android.content.Context;
 import android.graphics.Bitmap;

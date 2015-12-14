@@ -3,28 +3,12 @@ package com.example.james;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.apkfuns.logutils.LogUtils;
-import com.example.james.CommonAdapterEx.AdapterExUI;
-import com.example.james.bean.LocationBean;
+import com.example.james.commonAdapterEx.AdapterExUI;
 import com.example.james.dialog.DialogExUI;
+import com.example.james.mulPic.MulPicUI;
 import com.example.james.okhttpExample.OkHttpExampleUI;
 import com.example.james.weixinContact.WeiXinContactUi;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.squareup.okhttp.Callback;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
-import com.squareup.picasso.Picasso;
-import com.zhy.http.okhttp.callback.ResultCallback;
-import com.zhy.http.okhttp.request.OkHttpRequest;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,9 +16,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        goNavigation();
 
-
-        goDialogEx();
     }
 
     private void goCommonAdapterUI(){
@@ -56,5 +39,20 @@ public class MainActivity extends AppCompatActivity {
         Intent intent =new Intent(this, DialogExUI.class);
         startActivity(intent);
     }
+
+    private void goSwipeRefreshEx(){
+        Intent intent =new Intent(this, SwipeRefreshDemoUI.class);
+        startActivity(intent);
+    }
+    private void goMulPic(){
+        Intent intent =new Intent(this, MulPicUI.class);
+        startActivity(intent);
+    }
+
+    private void goNavigation(){
+        Intent intent =new Intent(this, NavigationUI.class);
+        startActivity(intent);
+    }
+
 
 }

@@ -3,10 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.james.commonAdapterEx.AdapterExUI">
+    android:orientation="vertical"
+    tools:context="com.example.james.mulPic.MulPicUI">
 
     <ListView
-        android:id="@+id/lv_adapter_ex"
+        android:id="@+id/lv_mul_pic"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"></ListView>
+
 </LinearLayout>

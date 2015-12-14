@@ -19,8 +19,15 @@
         </activity>
         <activity android:name=".okhttpExample.OkHttpExampleUI" />
         <activity android:name=".weixinContact.WeiXinContactUi" />
-        <activity android:name=".CommonAdapterEx.AdapterExUI" />
-        <activity android:name=".dialog.DialogExUI"></activity>
+        <activity android:name=".commonAdapterEx.AdapterExUI" />
+        <activity android:name=".dialog.DialogExUI" />
+        <activity android:name=".SwipeRefreshDemoUI" />
+        <activity android:name=".mulPic.MulPicUI" />
+        <activity android:name=".others.ToolBarUI" />
+        <activity
+            android:name=".NavigationUI"
+            android:label="@string/title_activity_navigation_ui"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
