@@ -1,5 +1,6 @@
 package com.example.james;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -20,6 +21,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.apkfuns.logutils.LogUtils;
 import com.example.james.fragment.FirstFragment;
 import com.joanzapata.android.BaseAdapterHelper;
 import com.joanzapata.android.QuickAdapter;
@@ -62,21 +64,30 @@ public class NavigationUI extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        TabLayout tabLayout= (TabLayout) findViewById(R.id.tl_main_title);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tl_main_title);
+        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         tabLayout.addTab(tabLayout.newTab().setText("Tab1"));
         tabLayout.addTab(tabLayout.newTab().setText("Tab2"));
         tabLayout.addTab(tabLayout.newTab().setText("Tab3"));
+        tabLayout.addTab(tabLayout.newTab().setText("Tab4"));
+        tabLayout.addTab(tabLayout.newTab().setText("Tab5"));
+        tabLayout.addTab(tabLayout.newTab().setText("Tab6"));
 //        tabLayout.addTab(tabLayout.newTab().setText("Tab1").setIcon(R.drawable.bookingdetail_dayicon_normal));
 //        tabLayout.addTab(tabLayout.newTab().setText("Tab2").setIcon(R.drawable.bookingdetail_timeline_normal));
 //        tabLayout.addTab(tabLayout.newTab().setText("Tab3").setIcon(R.drawable.bookingdetail_dayicon_normal));
-        tabLayout.setTabTextColors(getResources().getColor(R.color.black),getResources().getColor(R.color.white));
+        tabLayout.setTabTextColors(Color.GRAY, getResources().getColor(R.color.white));
         tabLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-//        tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.black));
+        tabLayout.setSelectedTabIndicatorColor(Color.YELLOW);
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
 //                Toast.makeText(NavigationUI.this,tab.getText(),Toast.LENGTH_SHORT).show();
+                //ViewPager左右滑动的时候,通过log打印,没有调用此方法
                 mViewPager.setCurrentItem(tab.getPosition());
+                /*if(mViewPager.getCurrentItem()!=tab.getPosition()){
+                    mViewPager.setCurrentItem(tab.getPosition());
+                }*/
+//                LogUtils.e(tab.getPosition()+"-------------");
             }
 
             @Override
@@ -90,9 +101,9 @@ public class NavigationUI extends AppCompatActivity
             }
         });
 
-        ArrayList<String> mDatas=new ArrayList<>();
-        for(int i=0;i<20;i++){
-            mDatas.add("shuju"+i);
+        ArrayList<String> mDatas = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            mDatas.add("shuju" + i);
         }
 /*        mListView = (ListView) findViewById(R.id.lv_main_content);
         mListView.setAdapter(new QuickAdapter<String>(NavigationUI.this,R.layout.item_adapter,mDatas) {
@@ -103,7 +114,7 @@ public class NavigationUI extends AppCompatActivity
             }
         });*/
         mViewPager = (ViewPager) findViewById(R.id.vp_main_content);
-        PagerAdapter pagerAdapter=new PagerAdapter() {
+        PagerAdapter pagerAdapter = new PagerAdapter() {
             @Override
             public int getCount() {
                 return 0;
@@ -115,12 +126,12 @@ public class NavigationUI extends AppCompatActivity
             }
         };
         mViewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
-        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout){
+        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout) {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
-                    mViewPager.setCurrentItem(position);
-                Toast.makeText(NavigationUI.this,""+position,Toast.LENGTH_SHORT).show();
+                mViewPager.setCurrentItem(position);
+//                Toast.makeText(NavigationUI.this,""+position,Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -151,10 +162,10 @@ public class NavigationUI extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Toast.makeText(NavigationUI.this,"hello,go to settings",Toast.LENGTH_SHORT).show();
+            Toast.makeText(NavigationUI.this, "hello,go to settings", Toast.LENGTH_SHORT).show();
             return true;
-        }else if(id==R.id.action_sharing){
-            Toast.makeText(NavigationUI.this,"hello,it is shared",Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.action_sharing) {
+            Toast.makeText(NavigationUI.this, "hello,it is shared", Toast.LENGTH_SHORT).show();
             return true;
         }
 
@@ -188,7 +199,7 @@ public class NavigationUI extends AppCompatActivity
     }
 
     public static class MyPagerAdapter extends FragmentPagerAdapter {
-        private static int NUM_ITEMS = 3;
+        private static int NUM_ITEMS = 6;
 
         public MyPagerAdapter(FragmentManager fragmentManager) {
             super(fragmentManager);
@@ -210,6 +221,12 @@ public class NavigationUI extends AppCompatActivity
                     return FirstFragment.newInstance(1, "Page # 2");
                 case 2: // Fragment # 1 - This will show SecondFragment
                     return FirstFragment.newInstance(2, "Page # 3");
+                case 3: // Fragment # 1 - This will show SecondFragment
+                    return FirstFragment.newInstance(3, "Page # 4");
+                case 4: // Fragment # 0 - This will show FirstFragment
+                    return FirstFragment.newInstance(4, "Page # 5");
+                case 5: // Fragment # 0 - This will show FirstFragment different title
+                    return FirstFragment.newInstance(5, "Page # 6");
                 default:
                     return null;
             }
