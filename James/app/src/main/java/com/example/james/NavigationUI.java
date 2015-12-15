@@ -1,5 +1,6 @@
 package com.example.james;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -37,6 +38,7 @@ public class NavigationUI extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setMyTheme();
         setContentView(R.layout.activity_navigation);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("标题");
@@ -65,16 +67,17 @@ public class NavigationUI extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tl_main_title);
-        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+//        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         tabLayout.addTab(tabLayout.newTab().setText("Tab1"));
         tabLayout.addTab(tabLayout.newTab().setText("Tab2"));
         tabLayout.addTab(tabLayout.newTab().setText("Tab3"));
         tabLayout.addTab(tabLayout.newTab().setText("Tab4"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab5"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab6"));
+//        tabLayout.addTab(tabLayout.newTab().setText("Tab5"));
+//        tabLayout.addTab(tabLayout.newTab().setText("Tab6"));
 //        tabLayout.addTab(tabLayout.newTab().setText("Tab1").setIcon(R.drawable.bookingdetail_dayicon_normal));
 //        tabLayout.addTab(tabLayout.newTab().setText("Tab2").setIcon(R.drawable.bookingdetail_timeline_normal));
 //        tabLayout.addTab(tabLayout.newTab().setText("Tab3").setIcon(R.drawable.bookingdetail_dayicon_normal));
+//        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setTabTextColors(Color.GRAY, getResources().getColor(R.color.white));
         tabLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         tabLayout.setSelectedTabIndicatorColor(Color.YELLOW);
@@ -136,6 +139,20 @@ public class NavigationUI extends AppCompatActivity
         });
     }
 
+    /**
+     * 设置日/夜间主题
+     */
+    private void setMyTheme() {
+        SharedPreferences sp=getSharedPreferences("james",MODE_PRIVATE);
+        boolean isNight=sp.getBoolean("isNightTheme",false);
+        setTheme(R.style.NightTheme);
+        if(isNight){
+            setTheme(R.style.NightTheme);
+        }else{
+            setTheme(R.style.DayTheme);
+        }
+    }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -188,7 +205,19 @@ public class NavigationUI extends AppCompatActivity
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
-            Toast.makeText(NavigationUI.this, "点击了分享功能", Toast.LENGTH_SHORT).show();
+            SharedPreferences sp=getSharedPreferences("james",MODE_PRIVATE);
+            boolean isNight=sp.getBoolean("isNightTheme",false);
+            SharedPreferences.Editor editor=sp.edit().putBoolean("isNightTheme",!isNight);
+            editor.commit();
+//            findViewById(R.id.nav_view).setBackgroundColor(NavigationUI.this.getResources().getColor(R.color.colorAccent));
+//            NavigationView navigationView= (NavigationView) findViewById(R.id.nav_view);
+            recreate();
+/*            setTheme(R.style.NightTheme);
+            if(isNight){
+                setTheme(R.style.NightTheme);
+            }else{
+                setTheme(R.style.DayTheme);
+            }*/
         } else if (id == R.id.nav_send) {
 
         }
@@ -199,7 +228,7 @@ public class NavigationUI extends AppCompatActivity
     }
 
     public static class MyPagerAdapter extends FragmentPagerAdapter {
-        private static int NUM_ITEMS = 6;
+        private static int NUM_ITEMS = 4;
 
         public MyPagerAdapter(FragmentManager fragmentManager) {
             super(fragmentManager);
@@ -223,10 +252,10 @@ public class NavigationUI extends AppCompatActivity
                     return FirstFragment.newInstance(2, "Page # 3");
                 case 3: // Fragment # 1 - This will show SecondFragment
                     return FirstFragment.newInstance(3, "Page # 4");
-                case 4: // Fragment # 0 - This will show FirstFragment
+              /*  case 4: // Fragment # 0 - This will show FirstFragment
                     return FirstFragment.newInstance(4, "Page # 5");
                 case 5: // Fragment # 0 - This will show FirstFragment different title
-                    return FirstFragment.newInstance(5, "Page # 6");
+                    return FirstFragment.newInstance(5, "Page # 6");*/
                 default:
                     return null;
             }
