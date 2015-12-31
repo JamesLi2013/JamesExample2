@@ -3,11 +3,15 @@ package com.example.james;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
+import com.example.james.PicAutoplay.PicAutoplayUI;
 import com.example.james.commonAdapterEx.AdapterExUI;
 import com.example.james.dialog.DialogExUI;
 import com.example.james.mulPic.MulPicUI;
 import com.example.james.okhttpExample.OkHttpExampleUI;
+import com.example.james.others.RecyclerDemoUI;
+import com.example.james.refresh.RefreshUI;
 import com.example.james.weixinContact.WeiXinContactUi;
 
 public class MainActivity extends AppCompatActivity {
@@ -16,8 +20,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        goNavigation();
 
+        Intent intent =new Intent(MainActivity.this, RecyclerDemoUI.class);
+        startActivity(intent);
+
+      /*  findViewById(R.id.tv_web_content).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(MainActivity.this, RecyclerDemoUI.class);
+                startActivity(intent);
+            }
+        });*/
     }
 
     private void goCommonAdapterUI(){
@@ -54,5 +67,14 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void goPicAutoplay(){
+        Intent intent =new Intent(this, PicAutoplayUI.class);
+        startActivity(intent);
+    }
+
+    private void goRefresh(){
+        Intent intent =new Intent(this, RefreshUI.class);
+        startActivity(intent);
+    }
 
 }

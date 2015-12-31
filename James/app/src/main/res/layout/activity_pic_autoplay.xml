@@ -7,19 +7,21 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity">
+    android:id="@+id/rl_root"
+    tools:context="com.example.james.PicAutoplay.PicAutoplayUI">
 
-    <TextView
-        android:id="@+id/tv_web_content"
+
+    <com.example.james.PicAutoplay.MyViewPager
+        android:id="@+id/vp_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:gravity="center"
-        android:text="点击进入" />
+        android:layout_height="200dp" />
 
-    <ImageView
-        android:id="@+id/iv_web_pic"
+    <LinearLayout
+        android:id="@+id/ll_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_web_content" />
+        android:layout_marginBottom="20dp"
+        android:layout_alignBottom="@id/vp_main"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"/>
 </RelativeLayout>

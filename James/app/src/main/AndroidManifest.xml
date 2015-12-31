@@ -28,7 +28,11 @@
             android:name=".NavigationUI"
             android:label="@string/title_activity_navigation_ui"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".others.OverScrollUI"></activity>
+        <activity android:name=".others.OverScrollUI" />
+        <activity android:name=".PicAutoplay.PicAutoplayUI" />
+        <activity android:name=".others.ChartUI" />
+        <activity android:name=".refresh.RefreshUI" />
+        <activity android:name=".others.RecyclerDemoUI"></activity>
     </application>
 
 </manifest>

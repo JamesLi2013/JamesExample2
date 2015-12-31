@@ -1,5 +1,6 @@
 package com.example.james;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.IntentCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -212,12 +214,11 @@ public class NavigationUI extends AppCompatActivity
 //            findViewById(R.id.nav_view).setBackgroundColor(NavigationUI.this.getResources().getColor(R.color.colorAccent));
 //            NavigationView navigationView= (NavigationView) findViewById(R.id.nav_view);
             recreate();
-/*            setTheme(R.style.NightTheme);
-            if(isNight){
-                setTheme(R.style.NightTheme);
-            }else{
-                setTheme(R.style.DayTheme);
-            }*/
+           /* finish();//效果不好
+            Intent intent = getIntent();
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            overridePendingTransition(0, 0);*/
         } else if (id == R.id.nav_send) {
 
         }
