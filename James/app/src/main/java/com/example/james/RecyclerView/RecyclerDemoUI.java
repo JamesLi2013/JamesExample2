@@ -1,8 +1,9 @@
-package com.example.james.others;
+package com.example.james.RecyclerView;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -17,15 +18,29 @@ import android.widget.Toast;
 
 import com.example.james.MyData;
 import com.example.james.R;
+import com.example.james.others.DividerItemDecoration;
 import com.example.james.weixinContact.Person;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+/**
+ * RecyclerView的简单使用Demo
+ */
 public class RecyclerDemoUI extends AppCompatActivity {
 
     private RecyclerView mRvContent;
     private SwipeRefreshLayout mSrlRefresh;
+    private int mLoadState=1;
+    private static final int NOT_LOADING=1;
+    private static final int LOADINGING=2;
+    private static final int LOADING_COMPLETE=3;
+    private static final int NOT_MORE_DATA=4;
+    private boolean mIsLoading=false;
+    private LinearLayoutManager mLinearLayoutManager;
+    private MyAdapter mAdapter;
+    private Handler mHandler= new Handler(Looper.getMainLooper());
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,14 +49,17 @@ public class RecyclerDemoUI extends AppCompatActivity {
         mRvContent = (RecyclerView) findViewById(R.id.rv_content);
         mSrlRefresh = (SwipeRefreshLayout) findViewById(R.id.srl_swipe_refresh);
 
-        mRvContent.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
+        mLinearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        mRvContent.setLayoutManager(mLinearLayoutManager);
 //        mRvContent.setLayoutManager(new GridLayoutManager(this,3));
         //瀑布流
 //        mRvContent.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
-        mRvContent.setAdapter(new MyAdapter(this, MyData.getContactData()));
+        mAdapter = new MyAdapter(this, MyData.getContactData());
+        mRvContent.setAdapter(mAdapter);
         mRvContent.setItemAnimator(new DefaultItemAnimator());
 //        设置分割线,分割线样式可自定义
         mRvContent.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL_LIST));
+        final MyLoadMorelistener myLoadMorelistener=new MyLoadMorelistener();
         mRvContent.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -57,10 +75,21 @@ public class RecyclerDemoUI extends AppCompatActivity {
 
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
                 Log.e("lqx","dx:"+dx+",dy:"+dy);
+                int totalCount=recyclerView.getAdapter().getItemCount()-1;
+                int visiblePositon=mLinearLayoutManager.findLastVisibleItemPosition();
+                if(dy>0&&(visiblePositon==totalCount)&&mLoadState==NOT_LOADING){
+                    mLoadState=LOADINGING;
+                    mAdapter.notifyDataSetChanged();
+                    myLoadMorelistener.loadMore();
+                }
+                super.onScrolled(recyclerView, dx, dy);
             }
         });
+        RecyclerView.LayoutManager layoutManager=mRvContent.getLayoutManager();
+        if(layoutManager instanceof LinearLayoutManager){
+            int lastPosition=((LinearLayoutManager) layoutManager).findLastVisibleItemPosition();
+        }
 
         //设置转动的线条颜色变化
         mSrlRefresh.setColorSchemeResources(android.R.color.holo_blue_bright,
@@ -124,7 +153,18 @@ public class RecyclerDemoUI extends AppCompatActivity {
             }else if(holder instanceof HorizontalViewHolder){
                 HorizontalViewHolder viewHolder=(HorizontalViewHolder)holder;
                 viewHolder.mIvHeader.setVisibility(View.GONE);
-                viewHolder.mTvTitle.setText("哈哈哈哈");
+                if(mLoadState==1){
+                    viewHolder.mTvTitle.setVisibility(View.GONE);
+                }else if(mLoadState==LOADINGING){
+                    viewHolder.mTvTitle.setVisibility(View.VISIBLE);
+                    viewHolder.mTvTitle.setText("正在加载");
+                }else if(mLoadState==LOADING_COMPLETE){
+                    viewHolder.mTvTitle.setVisibility(View.GONE);
+                    viewHolder.mTvTitle.setText("加载完成");
+                }else if(mLoadState==NOT_MORE_DATA){
+                    viewHolder.mTvTitle.setVisibility(View.VISIBLE);
+                    viewHolder.mTvTitle.setText("没有更多数据了");
+                }
             }
 
         }
@@ -132,7 +172,7 @@ public class RecyclerDemoUI extends AppCompatActivity {
         @Override
         public int getItemCount() {
             if(mData!=null)
-                return mData.size()+10;
+                return mData.size()+1;
             return 0;
         }
 
@@ -144,6 +184,7 @@ public class RecyclerDemoUI extends AppCompatActivity {
                 return TYPE_HORIZONTAL;
             }
         }
+
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder{
@@ -165,5 +206,32 @@ public class RecyclerDemoUI extends AppCompatActivity {
         }
     }
 
+    private interface LoadMorelistener{
+        void loadMore();
+        void loadComplete();
+    }
+
+    private class MyLoadMorelistener implements LoadMorelistener{
+
+        @Override
+        public void loadMore() {
+
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+//                    Toast.makeText(getApplicationContext(),"数据加载完成",Toast.LENGTH_SHORT).show();
+//                    loadComplete();
+                    mLoadState=NOT_MORE_DATA;
+                    mAdapter.notifyDataSetChanged();
+                }
+            },5000);
+        }
+
+        @Override
+        public void loadComplete() {
+            mLoadState=LOADING_COMPLETE;
+            mAdapter.notifyDataSetChanged();
+        }
+    }
 
 }

@@ -32,7 +32,8 @@
         <activity android:name=".PicAutoplay.PicAutoplayUI" />
         <activity android:name=".others.ChartUI" />
         <activity android:name=".refresh.RefreshUI" />
-        <activity android:name=".others.RecyclerDemoUI"></activity>
+        <activity android:name=".RecyclerView.RecyclerDemoUI" />
+        <activity android:name=".RecyclerView.RecyclerRefreshUI"></activity>
     </application>
 
 </manifest>
