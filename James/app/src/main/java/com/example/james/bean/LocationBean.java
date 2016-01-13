@@ -101,4 +101,5 @@ public class LocationBean {
             return nearestPoint;
         }
     }
+
 }

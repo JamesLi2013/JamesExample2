@@ -33,7 +33,11 @@
         <activity android:name=".others.ChartUI" />
         <activity android:name=".refresh.RefreshUI" />
         <activity android:name=".RecyclerView.RecyclerDemoUI" />
-        <activity android:name=".RecyclerView.RecyclerRefreshUI"></activity>
+        <activity android:name=".RecyclerView.RecyclerRefreshUI" />
+        <activity android:name=".RecyclerView.ToolBarDemoUI" />
+        <activity android:name=".animation.AnimationDemoUI" />
+        <activity android:name=".animation.RandomAnimUI" />
+        <activity android:name=".animation.AnimatorDemoUI" />
     </application>
 
 </manifest>

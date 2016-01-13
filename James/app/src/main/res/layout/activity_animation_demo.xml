@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".animation.AnimationDemoUI">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/iv_pic1"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="100dp"
+            android:src="@mipmap/first" />
+
+        <ImageView
+            android:id="@+id/iv_pic2"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="100dp"
+            android:src="@mipmap/second" />
+
+        <ImageView
+            android:id="@+id/iv_pic3"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="100dp"
+            android:src="@mipmap/third" />
+
+        <ImageView
+            android:id="@+id/iv_pic4"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="100dp"
+            android:src="@mipmap/fourth" />
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_show_anim"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="开始动画" />
+
+    <Button
+        android:id="@+id/btn_cancel_anim"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="取消动画" />
+</LinearLayout>

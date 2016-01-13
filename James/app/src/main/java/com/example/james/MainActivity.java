@@ -5,11 +5,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.james.PicAutoplay.PicAutoplayUI;
+import com.example.james.RecyclerView.RecyclerDemoUI;
 import com.example.james.commonAdapterEx.AdapterExUI;
 import com.example.james.dialog.DialogExUI;
 import com.example.james.mulPic.MulPicUI;
 import com.example.james.okhttpExample.OkHttpExampleUI;
-import com.example.james.RecyclerView.RecyclerDemoUI;
 import com.example.james.refresh.RefreshUI;
 import com.example.james.weixinContact.WeiXinContactUi;
 
