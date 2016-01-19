@@ -16,6 +16,7 @@ public class AnimatorDemoUI extends AppCompatActivity {
 
     private ImageView mIvPic3;
     private ObjectAnimator mAnimator;
+    private View v;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,20 +27,21 @@ public class AnimatorDemoUI extends AppCompatActivity {
 
     private void initView() {
         mIvPic3 = (ImageView) findViewById(R.id.iv_pic3);
-        mAnimator = ObjectAnimator.ofFloat(mIvPic3,"translationX",0f,200f);
+        mAnimator = ObjectAnimator.ofFloat(mIvPic3,"scaleX",1f,2.0f);
         mAnimator.setDuration(1000);
         mAnimator.setRepeatCount(2);
         findViewById(R.id.btn_start_anim).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                mAnimator.start();
+                mAnimator.start();
 
 //                PropertyValuesHolder pvh1=PropertyValuesHolder.ofFloat("translationX",0,300f);
 //                PropertyValuesHolder pvh2=PropertyValuesHolder.ofFloat("scaleX",0,1.0f);
 //                PropertyValuesHolder pvh3=PropertyValuesHolder.ofFloat("alpha",0,1.0f);
 //                PropertyValuesHolder pvh4=PropertyValuesHolder.ofFloat("rotationY",0,360f);
 //                ObjectAnimator.ofPropertyValuesHolder(mIvPic3,pvh1,pvh2,pvh3,pvh4).setDuration(2000).start();
-                valueAnim();
+
+//                valueAnim();
             }});
     }
 

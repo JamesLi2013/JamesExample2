@@ -38,6 +38,7 @@
         <activity android:name=".animation.AnimationDemoUI" />
         <activity android:name=".animation.RandomAnimUI" />
         <activity android:name=".animation.AnimatorDemoUI" />
+        <activity android:name=".RecyclerView.ChildRecyclerViewUI"></activity>
     </application>
 
 </manifest>

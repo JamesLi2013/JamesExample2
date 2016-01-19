@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.james.PicAutoplay.PicAutoplayUI;
-import com.example.james.RecyclerView.RecyclerDemoUI;
+import com.example.james.RecyclerView.ChildRecyclerViewUI;
 import com.example.james.commonAdapterEx.AdapterExUI;
 import com.example.james.dialog.DialogExUI;
 import com.example.james.mulPic.MulPicUI;
@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intent =new Intent(MainActivity.this, RecyclerDemoUI.class);
+        Intent intent =new Intent(MainActivity.this, ChildRecyclerViewUI.class);
         startActivity(intent);
 
       /*  findViewById(R.id.tv_web_content).setOnClickListener(new View.OnClickListener() {
@@ -43,12 +43,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void goWeiXInContact(){
-        Intent intent =new Intent(this, WeiXinContactUi.class);
-        startActivity(intent);
-    }
     private void goDialogEx(){
         Intent intent =new Intent(this, DialogExUI.class);
+        startActivity(intent);
+    }
+    private void goWeiXInContact(){
+        Intent intent =new Intent(this, WeiXinContactUi.class);
         startActivity(intent);
     }
 
