@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 
 import com.example.james.R;
+import com.example.james.others.DividerItemDecoration;
 import com.joanzapata.android.BaseAdapterHelper;
 import com.joanzapata.android.QuickAdapter;
 
@@ -29,6 +30,7 @@ public class ChildRecyclerViewUI extends AppCompatActivity {
         setContentView(R.layout.activity_child_recycler_view);
         mRvContent = (RecyclerView) findViewById(R.id.rv_content);
         mRvContent.setLayoutManager(new LinearLayoutManager(this));
+        mRvContent.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
         mRvContent.setItemAnimator(new DefaultItemAnimator());
         mDatas=new ArrayList<>();
         for (int i=0;i<20;i++){
