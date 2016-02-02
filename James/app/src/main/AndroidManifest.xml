@@ -33,12 +33,15 @@
         <activity android:name=".others.ChartUI" />
         <activity android:name=".refresh.RefreshUI" />
         <activity android:name=".RecyclerView.RecyclerDemoUI" />
-        <activity android:name=".RecyclerView.RecyclerRefreshUI" />
+        <activity android:name=".RecyclerView.CommonRecyclerViewUI" />
         <activity android:name=".RecyclerView.ToolBarDemoUI" />
         <activity android:name=".animation.AnimationDemoUI" />
         <activity android:name=".animation.RandomAnimUI" />
         <activity android:name=".animation.AnimatorDemoUI" />
-        <activity android:name=".RecyclerView.ChildRecyclerViewUI"></activity>
+        <activity android:name=".RecyclerView.ChildRecyclerViewUI" />
+        <activity android:name=".others.CardViewUI" />
+        <activity android:name=".others.GenericUI" />
+        <activity android:name=".others.ShareOriginalUI"></activity>
     </application>
 
 </manifest>
